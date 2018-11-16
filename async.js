@@ -5,14 +5,20 @@ window.onload = function () {
 	http.onreadystatechange = function(){
 		if (http.readyState == 4 && http.status == 200)
 		{
-			console.log(JSON.parse(http.response));
+	//		console.log(JSON.parse(http.response));
 		}
 	};
 //	prepare request with open 
 //	asynchronus = true 
 	http.open("GET", "data/tweets.json", true);//1
 	http.send();//2
-	console.log("I'm running :)");
+	//console.log("I'm running :)");
+
+	//jquery method
+	$.get("data/tweets.json", function(data){
+		console.log(data);
+	});
+	console.log("I believe I can fly");
 };
 
 
