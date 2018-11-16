@@ -1,6 +1,15 @@
 
 window.onload = function(){
-	
+	$.get("data/tweets.json").then(function(tweets){
+		console.log(tweets);
+		return $.get("data/friends.json");
+	}).then(function (friends){
+		console.log(friends);
+		return $.get("data/idols.json");
+	}).then(function(idols){
+		console.log(idols);
+	});
+	/*
 	function get(url){
 		return new Promise(function(resolve, reject){
 			var request = new XMLHttpRequest();
@@ -32,4 +41,5 @@ window.onload = function(){
 	}).catch(function(error){
 		console.log(error);
 	});
+	*/
 };
