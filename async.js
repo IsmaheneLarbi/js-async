@@ -1,32 +1,33 @@
 window.onload = function () {
-	// body...
-	var http = new XMLHttpRequest();//0
-
-	http.onreadystatechange = function(){
-		if (http.readyState == 4 && http.status == 200)
-		{
-	//		console.log(JSON.parse(http.response));
+	$.ajax({
+		type: "GET",
+		url: "data/tweets.json",
+		success: function(data){
+			console.log(data);
+				$.ajax({
+					type: "GET",
+					url: "data/friends.json",
+					success: function(data){
+						console.log(data);
+							$.ajax({
+							type: "GET",
+							url: "data/idols.json",
+							success: function(data){
+								console.log(data);
+								
+							},
+							error: function(jqXHR, textStatus, error){
+								console.log(error);
+							}
+						});
+					},
+					error: function(jqXHR, textStatus, error){
+						console.log(error);
+					}
+				});
+		},
+		error: function(jqXHR, textStatus, error){
+			console.log(error);
 		}
-	};
-//	prepare request with open 
-//	asynchronus = true 
-	http.open("GET", "data/tweets.json", true);//1
-	http.send();//2
-	//console.log("I'm running :)");
-
-	//jquery method
-	$.get("data/tweets.json", function(data){
-		console.log(data);
 	});
-	console.log("I believe I can fly");
 };
-
-
-/*READY STATES
-
-0- request ! initialized
-1- request set up
-2- sent
-3- in process....
-4-complete
-*/
